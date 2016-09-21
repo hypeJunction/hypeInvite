@@ -1,0 +1,35 @@
+{
+	"name": "hypejunction/hypeinvite",
+	"type": "elgg-plugin",
+	"description": "An interface for inviting new users to the site",
+	"homepage": "http://hypejunction.com",
+	"keywords": [
+		"elgg",
+		"plugin",
+		"invite",
+		"invite only network",
+		"invite code"
+	],
+	"extra": {
+		"installer-name": "hypeInvite"
+	},
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "Ismayil Khayredinov",
+			"email": "info@hypejunction.com"
+		}
+	],
+	"require": {
+		"php": ">=5.5",
+		"composer/installers": "~1.0",
+		"hypejunction/elgg_tokeninput": "~4.0",
+		"hypejunction/ui_tabs": "*"
+	},
+	"autoload": {
+		"psr-0": {
+			"hypeJunction": "classes/hypeJunction/"
+		}
+	}
+}
+
