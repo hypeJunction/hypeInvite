@@ -294,11 +294,17 @@ class InviteService {
 
 		foreach ($inviters as $inviter) {
 			/* @var $inviter ElggUser */
+
+			// We will respect frien_request setting for river events
+			$add_to_river = true;
+			if (elgg_is_active_plugin('friend_request')) {
+				$add_to_river = elgg_get_plugin_setting('add_river', 'friend_request') !== 'no';
+			}
 			
 			if (elgg_is_active_plugin('friend_request')) {
 				if ($accept_on_register) {
-					add_entity_relationship($inviter->guid, 'friend', $user->guid);
-					add_entity_relationship($user->guid, 'friend', $inviter->guid);
+					$inviter->addFriend($user->guid, $add_to_river); // add to river
+					$user->addFriend($inviter->guid, $add_to_river);
 				} else if (!$inviter->isFriendsWith($user->guid)) {
 					add_entity_relationship($inviter->guid, 'friendrequest', $user->guid);
 				}
