@@ -339,10 +339,9 @@ class InviteService {
 
 		$accept_on_register = elgg_get_plugin_setting('groups_accept_on_register', 'hypeInvite');
 		foreach ($groups as $group) {
+			add_entity_relationship($group->guid, 'invited', $user->guid);
 			if (is_callable('groups_join_group') && $accept_on_register) {
 				groups_join_group($group, $user);
-			} else {
-				add_entity_relationship($group->guid, 'invited', $user->guid);
 			}
 		}
 
