@@ -18,6 +18,7 @@ elgg_register_event_handler('init', 'system', function() {
 
 	elgg_register_plugin_hook_handler('route', 'friends', [Router::class, 'routeFriends']);
 	elgg_register_plugin_hook_handler('route', 'groups', [Router::class, 'routeGroups']);
+	elgg_register_plugin_hook_handler('register', 'user', [Router::class, 'hijackForwardURL'], 1000);
 
 	elgg_register_plugin_hook_handler('register', 'menu:page', [Menus::class, 'setupPageMenu']);
 
@@ -38,5 +39,6 @@ elgg_register_event_handler('init', 'system', function() {
 
 	elgg_extend_view('filters/friends', 'filters/users/invite', 100);
 	elgg_extend_view('groups/profile/layout', 'groups/profile/buttons/invite');
+
 });
 

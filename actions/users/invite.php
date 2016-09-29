@@ -53,6 +53,9 @@ foreach ($emails as $email) {
 	}
 
 	$link = users_invite_get_registration_link($email);
+	$link = elgg_http_add_url_query_elements($link, [
+		'ref' => $inviter->guid,
+	]);
 
 	$invite_codes = (array) $user_invite->invite_codes;
 

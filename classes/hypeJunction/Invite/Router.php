@@ -2,6 +2,9 @@
 
 namespace hypeJunction\Invite;
 
+use ElggGroup;
+use ElggUser;
+
 class Router {
 
 	/**
@@ -75,6 +78,55 @@ class Router {
 			}
 			forward('');
 		}
+	}
+
+	/**
+	 * Hijack forward URL of the register action
+	 *
+	 * @param string $hook   "register"
+	 * @param string $type   "user"
+	 * @param bool   $return Proceed with registration
+	 * @param array  $params Hook params
+	 * @return bool
+	 */
+	public static function hijackForwardURL($hook, $type, $return, $params) {
+		if ($return === false) {
+			return;
+		}
+		
+		$user = elgg_extract('user', $params);
+		/* @var $user ElggUser */
+
+		$ia = elgg_set_ignore_access(true);
+
+		if ($user->isEnabled()) {
+			$forward_url = '';
+
+			$ref = get_input('ref');
+			$entity = get_entity($ref);
+
+			if ($entity instanceof ElggGroup) {
+				if (elgg_get_plugin_setting('groups_accept_on_register', 'hypeInvite')) {
+					$forward_url = $entity->getURL();
+				} else if (elgg_is_active_plugin('groups')) {
+					$forward_url = elgg_normalize_url("groups/invitations/$user->username");
+				}
+			} else if ($entity instanceof ElggUser) {
+				if (elgg_get_plugin_setting('friends_accept_on_register', 'hypeInvite')) {
+					$forward_url = $entity->getURL();
+				} else if (elgg_is_active_plugin('friend_request')) {
+					$forward_url = elgg_normalize_url("friend_request/$user->username/received");
+				}
+			}
+
+			elgg_register_plugin_hook_handler('forward', 'all', function() use ($forward_url) {
+				if ($forward_url) {
+					return $forward_url;
+				}
+			});
+		}
+
+		elgg_set_ignore_access($ia);
 	}
 
 }

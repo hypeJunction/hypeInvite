@@ -64,7 +64,10 @@ foreach ($emails as $email) {
 	add_entity_relationship($group_invite->guid, 'invited_to', $group->guid);
 
 	$link = users_invite_get_registration_link($email, $inviter->guid);
-
+	$link = elgg_http_add_url_query_elements($link, [
+		'ref' => $group->guid,
+	]);
+	
 	$invite_codes = (array) $group_invite->invite_codes;
 
 	$site = elgg_get_site_entity();
