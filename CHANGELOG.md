@@ -1,3 +1,14 @@
+<a name="1.0.2"></a>
+## [1.0.2](https://github.com/hypeJunction/hypeInvite/compare/1.0.1...v1.0.2) (2016-09-30)
+
+
+### Bug Fixes
+
+* **forms:** add an option to hide an invite code field ([493f0a2](https://github.com/hypeJunction/hypeInvite/commit/493f0a2))
+* **ux:** improve the UX of automatic acceptance of invitations ([14653e5](https://github.com/hypeJunction/hypeInvite/commit/14653e5))
+
+
+
 <a name="1.0.1"></a>
 ## [1.0.1](https://github.com/hypeJunction/hypeInvite/compare/1.0.0...v1.0.1) (2016-09-29)
 
