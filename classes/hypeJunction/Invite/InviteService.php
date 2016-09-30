@@ -300,9 +300,10 @@ class InviteService {
 			if (elgg_is_active_plugin('friend_request')) {
 				$add_to_river = elgg_get_plugin_setting('add_river', 'friend_request') !== 'no';
 			}
-			
+
+			$ref = get_input('ref');
 			if (elgg_is_active_plugin('friend_request')) {
-				if ($accept_on_register) {
+				if ($accept_on_register || $ref == $user->guid) {
 					$inviter->addFriend($user->guid, $add_to_river); // add to river
 					$user->addFriend($inviter->guid, $add_to_river);
 				} else if (!$inviter->isFriendsWith($user->guid)) {
@@ -343,10 +344,11 @@ class InviteService {
 			'limit' => 0,
 		));
 
+		$ref = get_input('ref');
 		$accept_on_register = elgg_get_plugin_setting('groups_accept_on_register', 'hypeInvite');
 		foreach ($groups as $group) {
 			add_entity_relationship($group->guid, 'invited', $user->guid);
-			if (is_callable('groups_join_group') && $accept_on_register) {
+			if (is_callable('groups_join_group') && ($accept_on_register || $ref == $group->guid)) {
 				groups_join_group($group, $user);
 			}
 		}

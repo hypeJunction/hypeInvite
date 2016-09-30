@@ -32,7 +32,11 @@ return [
 	'users:invite:settings:invitation_codes' => 'Invitation codes',
 	'users:invite:settings:invitation_codes:help' => 'Please list site-wide invitation codes (one per line) that can be used by any user to register',
 	'users:invite:settings:friends_accept_on_register' => 'Automatically accept off-site friend requests',
-	'users:invite:settings:friends_accept_on_register:help' => 'If disabled, users will need to accept individual friend requests after registering on the site, otherwise, they will be made friends of the inviter automatically',
+	'users:invite:settings:friends_accept_on_register:help' => '
+		This plugin keeps tracks of all invites ever sent to the same email address.
+		If enabled, this feature will automatically accept all friend requests ever sent to the registering user\'s email address.
+		Otherwise, only the request that was clicked on in a single email notification will be accepted.
+	',
 
 	'users:invite:result:invited' => '%s of %s invitations were successfully sent',
 	'users:invite:result:skipped' => '%s of %s invitations were skipped, because users have already been invited or have an account',
@@ -48,7 +52,11 @@ return [
 	'groups:invite:settings:emails_tab' => 'Groups: Allow invitation by email',
 	'groups:invite:settings:emails_tab:help' => 'If enabled, users will be able to invite other people to the group via email',
 	'groups:invite:settings:groups_accept_on_register' => 'Groups: Automatically accept off-site group invitations',
-	'groups:invite:settings:groups_accept_on_register:help' => 'If disabled, users will need to accept individual group invitations after registering on the site, otherwise, they will be added to the group automatically',
+	'groups:invite:settings:groups_accept_on_register:help' => '
+		This plugin keeps tracks of all invites ever sent to the same email address.
+		If enabled, this feature will automatically accept all group invitations ever sent to registering user\'s email address.
+		Otherwise, only the request that was clicked on in a single email notification will be accepted.
+	',
 
 	'groups:invite:friends' => 'Friends',
 	'groups:invite:users' => 'Users',
