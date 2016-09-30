@@ -27,6 +27,8 @@ return [
 
 	'users:invite:settings:invite_only_network' => 'Invite Only Registration',
 	'users:invite:settings:invite_only_network:help' => 'If enabled, only users with a valid invitation code will be allowed to register',
+	'users:invite:settings:invite_code_register_form' => 'Invite Code Field',
+	'users:invite:settings:invite_code_register_form:help' => 'If disabled, the invitation code field won\'t be shown on the registration form',
 	'users:invite:settings:invitation_codes' => 'Invitation codes',
 	'users:invite:settings:invitation_codes:help' => 'Please list site-wide invitation codes (one per line) that can be used by any user to register',
 	'users:invite:settings:friends_accept_on_register' => 'Automatically accept off-site friend requests',

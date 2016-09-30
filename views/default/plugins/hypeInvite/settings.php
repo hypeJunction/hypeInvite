@@ -13,6 +13,17 @@ echo elgg_view_input('select', array(
 	'help' => elgg_echo('users:invite:settings:invite_only_network:help'),
 ));
 
+echo elgg_view_input('select', array(
+	'name' => 'params[invite_code_register_form]',
+	'value' => isset($entity->invite_code_register_form) ? $entity->invite_code_register_form : 1,
+	'options_values' => array(
+		0 => elgg_echo('option:no'),
+		1 => elgg_echo('option:yes'),
+	),
+	'label' => elgg_echo('users:invite:settings:invite_code_register_form'),
+	'help' => elgg_echo('users:invite:settings:invite_code_register_form:help'),
+));
+
 echo elgg_view_input('plaintext', array(
 	'name' => 'params[invitation_codes]',
 	'value' => $entity->invitation_codes,
