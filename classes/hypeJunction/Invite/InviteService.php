@@ -292,25 +292,28 @@ class InviteService {
 
 		$accept_on_register = elgg_get_plugin_setting('friends_accept_on_register', 'hypeInvite');
 
+		// We will respect friend_request setting for river events
+		$add_to_river = true;
+		$relationship = 'friend';
+		if (elgg_is_active_plugin('friend_request')) {
+			$add_to_river = elgg_get_plugin_setting('add_river', 'friend_request') !== 'no';
+			$relationship = 'friendrequest';
+		}
+
+		$ref = get_input('ref');
+		
 		foreach ($inviters as $inviter) {
 			/* @var $inviter ElggUser */
 
-			// We will respect frien_request setting for river events
-			$add_to_river = true;
-			if (elgg_is_active_plugin('friend_request')) {
-				$add_to_river = elgg_get_plugin_setting('add_river', 'friend_request') !== 'no';
+			if ($inviter->isFriendsWith($user->guid)) {
+				continue;
 			}
-
-			$ref = get_input('ref');
-			if (elgg_is_active_plugin('friend_request')) {
-				if ($accept_on_register || $ref == $user->guid) {
-					$inviter->addFriend($user->guid, $add_to_river); // add to river
-					$user->addFriend($inviter->guid, $add_to_river);
-				} else if (!$inviter->isFriendsWith($user->guid)) {
-					add_entity_relationship($inviter->guid, 'friendrequest', $user->guid);
-				}
+			
+			if ($accept_on_register || $ref == $user->guid) {
+				$inviter->addFriend($user->guid, $add_to_river);
+				$user->addFriend($inviter->guid, $add_to_river);
 			} else {
-				add_entity_relationship($inviter->guid, 'friend', $user->guid);
+				add_entity_relationship($inviter->guid, $relationship, $user->guid);
 			}
 		}
 		
