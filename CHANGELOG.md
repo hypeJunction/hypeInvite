@@ -1,3 +1,15 @@
+<a name="1.0.3"></a>
+## [1.0.3](https://github.com/hypeJunction/hypeInvite/compare/1.0.2...v1.0.3) (2016-10-01)
+
+
+### Bug Fixes
+
+* **friends:** correct friendship logic on user registration ([6ee0615](https://github.com/hypeJunction/hypeInvite/commit/6ee0615))
+* **groups:** add invitations to parent groups ([55f8eb1](https://github.com/hypeJunction/hypeInvite/commit/55f8eb1))
+* **ux:** do not include invite code in notifications if form field is hidden ([0d41a8f](https://github.com/hypeJunction/hypeInvite/commit/0d41a8f))
+
+
+
 <a name="1.0.2"></a>
 ## [1.0.2](https://github.com/hypeJunction/hypeInvite/compare/1.0.1...v1.0.2) (2016-09-30)
 
