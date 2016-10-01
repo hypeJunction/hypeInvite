@@ -72,6 +72,8 @@ foreach ($emails as $email) {
 
 	$site = elgg_get_site_entity();
 
+	$show_invite_code = elgg_get_plugin_setting('invite_code_register_form', 'hypeInvite', true);
+	
 	$notification_params = array(
 		'inviter' => $inviter->getDisplayName(),
 		'group' => $group->getDisplayName(),
@@ -79,6 +81,7 @@ foreach ($emails as $email) {
 		'message' => ($message) ? elgg_echo('groups:invite:notify:message', array($message)) : '',
 		'link' => $link,
 		'invite_code' => $invite_codes[0],
+		'message_code' => ($show_invite_code) ? elgg_echo('groups:invite:notify:message', [$invite_codes[0]]) : '',
 	);
 
 	$subject = elgg_echo('groups:invite:notify:subject', array($group->getDisplayName()));

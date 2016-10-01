@@ -61,13 +61,15 @@ foreach ($emails as $email) {
 
 	add_entity_relationship($user_invite->guid, 'invited_by', $inviter->guid);
 
+	$show_invite_code = elgg_get_plugin_setting('invite_code_register_form', 'hypeInvite', true);
 	$site = elgg_get_site_entity();
 	$notification_params = array(
 		'inviter' => $inviter->getDisplayName(),
 		'site' => $site->getDisplayName(),
-		'message' => ($message) ? elgg_echo('users:invite:notify:message', array($message)) : '',
+		'message' => ($message) ? elgg_echo('users:invite:notify:message', [$message]) : '',
 		'link' => $link,
 		'invite_code' => $invite_codes[0],
+		'message_code' => ($show_invite_code) ? elgg_echo('users:invite:notify:invite_code', [$invite_codes[0]]) : '',
 	);
 	
 	$subject = elgg_echo('users:invite:notify:subject', array($site->getDisplayName()));

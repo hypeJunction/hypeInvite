@@ -15,14 +15,18 @@ return [
 		Please visit the following link to create an account:
 		%4$s
 
-		Please use the following invitation code:
-		%5$s
+		%6$s
 		',
 	'users:invite:notify:message' => '
 
 		They have included the following message for you:
 		%s
 
+		',
+
+	'users:invite:notify:invite_code' => '
+		Please use the following invitation code:
+		%1$s
 		',
 
 	'users:invite:settings:invite_only_network' => 'Invite Only Registration',
@@ -84,14 +88,19 @@ return [
 		%4$s
 		Please visit the following link to create an account:
 		%5$s
-
-		Please use the following invitation code:
-		%6$s
+		
+		%7$s
 		',
 	'groups:invite:notify:message' => '
 		They have included the following message for you:
 		%s
 
+		',
+
+	'groups:invite:notify:message' => '
+		Please use the following invitation code:
+		%1$s
+		
 		',
 
 	'groups:invite:user:subject' => "%s invites you to join %s",
