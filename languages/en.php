@@ -18,7 +18,6 @@ return [
 		%6$s
 		',
 	'users:invite:notify:message' => '
-
 		They have included the following message for you:
 		%s
 

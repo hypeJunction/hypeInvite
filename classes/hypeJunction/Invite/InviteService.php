@@ -351,6 +351,16 @@ class InviteService {
 		$accept_on_register = elgg_get_plugin_setting('groups_accept_on_register', 'hypeInvite');
 		foreach ($groups as $group) {
 			add_entity_relationship($group->guid, 'invited', $user->guid);
+
+			if (is_callable('\AU\SubGroups\get_parent_group')) {
+				// AU Subgroups is unable to resolve invites properly
+				// unless we also invite the user to all parent groups
+				$parent = $group;
+				while($parent = \AU\SubGroups\get_parent_group($parent)) {
+					add_entity_relationship($parent->guid, 'invited', $user->guid);
+				}
+			}
+
 			if (is_callable('groups_join_group') && ($accept_on_register || $ref == $group->guid)) {
 				groups_join_group($group, $user);
 			}
